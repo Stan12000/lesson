@@ -3,11 +3,12 @@ package tw.org.iii.lesson_1;
 public class Bike {
 //field
 private	double speed;
-
+static int count;
   //constructor 
   Bike(){
+	  count++;
 	  speed = 1;
-	  System.out.println("Bike()");
+	  System.out.println("Bike()"+ speed);
   }
 
     //method

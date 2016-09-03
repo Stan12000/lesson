@@ -5,14 +5,14 @@ public class Bike {
 private	double speed;
 static int count;
   //constructor 
-  Bike(){
+  protected Bike(){
 	  count++;
 	  speed = 1;
 	  System.out.println("Bike()"+ speed);
   }
 
     //method
-	void  upSpeed(){
+	protected void  upSpeed(){
 		speed = speed<1?1:speed*1.2;
 	}
 	

@@ -6,12 +6,17 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 import javax.swing.JPanel;
 
-public class MyPainter  extends JPanel{
+public class MyPainter  extends JPanel implements Serializable {
 
 	private LinkedList<LinkedList<HashMap<String,Integer>>> lines,recycle;
 	
@@ -107,6 +112,30 @@ public class MyPainter  extends JPanel{
 		lines.add(recycle.removeLast());
 		repaint();
 		}
+	}
+	
+	void serializable(){
+		try {
+			ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream("dir1/Ser.brad"));
+			oout.writeObject(lines);
+			oout.flush();
+			oout.close();
+		} catch (Exception e) {
+		}
+		
+	}
+	void Aserializable(){
+		try {
+			ObjectInputStream oin = new ObjectInputStream(new FileInputStream("dir1/Ser.brad"));
+			Object obj1 = oin.readObject();
+			 lines = (LinkedList)(obj1);
+			oin.close();
+			System.out.println("OK");
+			repaint();
+		} catch (Exception e) {
+			
+		}
+		
 	}
 
 }
